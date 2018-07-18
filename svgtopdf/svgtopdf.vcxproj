@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{DB8C912F-AF12-4E41-B424-C265ECB8C27C}</ProjectGuid>
+    <RootNamespace>svgtopdf</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="DrawSvg.cpp" />
+    <ClCompile Include="libharu\hpdf_3dmeasure.c" />
+    <ClCompile Include="libharu\hpdf_annotation.c" />
+    <ClCompile Include="libharu\hpdf_array.c" />
+    <ClCompile Include="libharu\hpdf_binary.c" />
+    <ClCompile Include="libharu\hpdf_boolean.c" />
+    <ClCompile Include="libharu\hpdf_catalog.c" />
+    <ClCompile Include="libharu\hpdf_destination.c" />
+    <ClCompile Include="libharu\hpdf_dict.c" />
+    <ClCompile Include="libharu\hpdf_doc.c" />
+    <ClCompile Include="libharu\hpdf_doc_png.c" />
+    <ClCompile Include="libharu\hpdf_encoder.c" />
+    <ClCompile Include="libharu\hpdf_encoder_cns.c" />
+    <ClCompile Include="libharu\hpdf_encoder_cnt.c" />
+    <ClCompile Include="libharu\hpdf_encoder_jp.c" />
+    <ClCompile Include="libharu\hpdf_encoder_kr.c" />
+    <ClCompile Include="libharu\hpdf_encoder_utf.c" />
+    <ClCompile Include="libharu\hpdf_encrypt.c" />
+    <ClCompile Include="libharu\hpdf_encryptdict.c" />
+    <ClCompile Include="libharu\hpdf_error.c" />
+    <ClCompile Include="libharu\hpdf_exdata.c" />
+    <ClCompile Include="libharu\hpdf_ext_gstate.c" />
+    <ClCompile Include="libharu\hpdf_font.c" />
+    <ClCompile Include="libharu\hpdf_fontdef.c" />
+    <ClCompile Include="libharu\hpdf_fontdef_base14.c" />
+    <ClCompile Include="libharu\hpdf_fontdef_cid.c" />
+    <ClCompile Include="libharu\hpdf_fontdef_cns.c" />
+    <ClCompile Include="libharu\hpdf_fontdef_cnt.c" />
+    <ClCompile Include="libharu\hpdf_fontdef_jp.c" />
+    <ClCompile Include="libharu\hpdf_fontdef_kr.c" />
+    <ClCompile Include="libharu\hpdf_fontdef_tt.c" />
+    <ClCompile Include="libharu\hpdf_fontdef_type1.c" />
+    <ClCompile Include="libharu\hpdf_font_cid.c" />
+    <ClCompile Include="libharu\hpdf_font_tt.c" />
+    <ClCompile Include="libharu\hpdf_font_type1.c" />
+    <ClCompile Include="libharu\hpdf_gstate.c" />
+    <ClCompile Include="libharu\hpdf_image.c" />
+    <ClCompile Include="libharu\hpdf_image_ccitt.c" />
+    <ClCompile Include="libharu\hpdf_image_png.c" />
+    <ClCompile Include="libharu\hpdf_info.c" />
+    <ClCompile Include="libharu\hpdf_list.c" />
+    <ClCompile Include="libharu\hpdf_mmgr.c" />
+    <ClCompile Include="libharu\hpdf_name.c" />
+    <ClCompile Include="libharu\hpdf_namedict.c" />
+    <ClCompile Include="libharu\hpdf_null.c" />
+    <ClCompile Include="libharu\hpdf_number.c" />
+    <ClCompile Include="libharu\hpdf_objects.c" />
+    <ClCompile Include="libharu\hpdf_outline.c" />
+    <ClCompile Include="libharu\hpdf_pages.c" />
+    <ClCompile Include="libharu\hpdf_page_label.c" />
+    <ClCompile Include="libharu\hpdf_page_operator.c" />
+    <ClCompile Include="libharu\hpdf_pdfa.c" />
+    <ClCompile Include="libharu\hpdf_real.c" />
+    <ClCompile Include="libharu\hpdf_streams.c" />
+    <ClCompile Include="libharu\hpdf_string.c" />
+    <ClCompile Include="libharu\hpdf_u3d.c" />
+    <ClCompile Include="libharu\hpdf_utils.c" />
+    <ClCompile Include="libharu\hpdf_xref.c" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="nanosvg.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DrawSvg.h" />
+    <ClInclude Include="libharu\hpdf.h" />
+    <ClInclude Include="libharu\hpdf_3dmeasure.h" />
+    <ClInclude Include="libharu\hpdf_annotation.h" />
+    <ClInclude Include="libharu\hpdf_catalog.h" />
+    <ClInclude Include="libharu\hpdf_conf.h" />
+    <ClInclude Include="libharu\hpdf_config.h" />
+    <ClInclude Include="libharu\hpdf_consts.h" />
+    <ClInclude Include="libharu\hpdf_destination.h" />
+    <ClInclude Include="libharu\hpdf_doc.h" />
+    <ClInclude Include="libharu\hpdf_encoder.h" />
+    <ClInclude Include="libharu\hpdf_encrypt.h" />
+    <ClInclude Include="libharu\hpdf_encryptdict.h" />
+    <ClInclude Include="libharu\hpdf_error.h" />
+    <ClInclude Include="libharu\hpdf_exdata.h" />
+    <ClInclude Include="libharu\hpdf_ext_gstate.h" />
+    <ClInclude Include="libharu\hpdf_font.h" />
+    <ClInclude Include="libharu\hpdf_fontdef.h" />
+    <ClInclude Include="libharu\hpdf_gstate.h" />
+    <ClInclude Include="libharu\hpdf_image.h" />
+    <ClInclude Include="libharu\hpdf_info.h" />
+    <ClInclude Include="libharu\hpdf_list.h" />
+    <ClInclude Include="libharu\hpdf_mmgr.h" />
+    <ClInclude Include="libharu\hpdf_namedict.h" />
+    <ClInclude Include="libharu\hpdf_objects.h" />
+    <ClInclude Include="libharu\hpdf_outline.h" />
+    <ClInclude Include="libharu\hpdf_pages.h" />
+    <ClInclude Include="libharu\hpdf_page_label.h" />
+    <ClInclude Include="libharu\hpdf_pdfa.h" />
+    <ClInclude Include="libharu\hpdf_streams.h" />
+    <ClInclude Include="libharu\hpdf_types.h" />
+    <ClInclude Include="libharu\hpdf_u3d.h" />
+    <ClInclude Include="libharu\hpdf_utils.h" />
+    <ClInclude Include="libharu\hpdf_version.h" />
+    <ClInclude Include="libharu\t4.h" />
+    <ClInclude Include="nanosvg.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
