@@ -23,6 +23,9 @@ bool SvgConverter::isLoaded() {
 	return this->g_image;
 }
 bool SvgConverter::loadFromFile(std::string fileName) {
+	if (g_image)
+		nsvgDelete(g_image);
+
 	g_image = nsvgParseFromFile(fileName.c_str(), "px", 96.0f); // returns svg image as paths
 	if (!g_image) {
 		std::cerr << "Could not open SVG image." << std::endl;;
