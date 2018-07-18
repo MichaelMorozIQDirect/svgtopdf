@@ -6,6 +6,7 @@ This code was written to demonstrate the process of parsing vector **SVG** files
 **Scalable Vector Graphics (SVG)** is a 2D vector image format widely used in Web development. The SVG format is heavily based on XML standard. While the raster image (PNG, JPG, GIF,  etc..) is composed of a fixed set of pixels, the vector SVG image is composed of a fixed set of shapes, like circles, lines, rectangles, Bezier curves etc. The advantage of SVG format is that it can be easily scaled to any level without the loss of quantity.
 
 I have included a nice picture of cat here:
+
 <img src="https://iq.direct/images/stories/svg/cat.svg" alt="Cat" width="200px"/>
 
 **Bézier curve** is a parametric curve which is used to model smooth curves that can be scaled indefinitely. Bezier curve can be represented as a set of _control points_. Quadratic and cubic Bezier curves are most common. Higher degree curves are more computationally expensive to evaluate. When more complex shapes are needed, low order Bezier curves are patched together, producing a composite Bezier curve. A composite Bezier curve is commonly referred to as a _path_.
