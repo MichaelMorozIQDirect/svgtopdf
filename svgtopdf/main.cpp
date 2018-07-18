@@ -12,16 +12,16 @@ int main(int argc, char ** argv) {
 	std::string fileInput = argv[1];
 	std::string fileOutput = argv[2];
 
-	SvgConverter manager; 
+	SvgConverter converter; 
 
-	if (!manager.loadFromFile(fileInput)) { // load svg image to inner buffer
+	if (!converter.loadFromFile(fileInput)) { // load svg image to inner buffer
 		std::cout << "Error loading inout file" << fileInput << std::endl;
 		return 1;
 	}
 	
 	std::cout << "input file " << fileInput << " loaded" << std::endl;
 	
-	if (!manager.convertToPDF(fileOutput)) { // parse and write image from buffer to pdf format
+	if (!converter.convertToPDF(fileOutput)) { // parse and write image from buffer to pdf format
 		std::cout << "Error converting " << fileOutput << std::endl;
 		return 1;
 	}
