@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,70 +116,184 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DrawSvg.cpp" />
-    <ClCompile Include="libharu\hpdf_3dmeasure.c" />
-    <ClCompile Include="libharu\hpdf_annotation.c" />
-    <ClCompile Include="libharu\hpdf_array.c" />
-    <ClCompile Include="libharu\hpdf_binary.c" />
-    <ClCompile Include="libharu\hpdf_boolean.c" />
-    <ClCompile Include="libharu\hpdf_catalog.c" />
-    <ClCompile Include="libharu\hpdf_destination.c" />
-    <ClCompile Include="libharu\hpdf_dict.c" />
-    <ClCompile Include="libharu\hpdf_doc.c" />
-    <ClCompile Include="libharu\hpdf_doc_png.c" />
-    <ClCompile Include="libharu\hpdf_encoder.c" />
-    <ClCompile Include="libharu\hpdf_encoder_cns.c" />
-    <ClCompile Include="libharu\hpdf_encoder_cnt.c" />
-    <ClCompile Include="libharu\hpdf_encoder_jp.c" />
-    <ClCompile Include="libharu\hpdf_encoder_kr.c" />
-    <ClCompile Include="libharu\hpdf_encoder_utf.c" />
-    <ClCompile Include="libharu\hpdf_encrypt.c" />
-    <ClCompile Include="libharu\hpdf_encryptdict.c" />
-    <ClCompile Include="libharu\hpdf_error.c" />
-    <ClCompile Include="libharu\hpdf_exdata.c" />
-    <ClCompile Include="libharu\hpdf_ext_gstate.c" />
-    <ClCompile Include="libharu\hpdf_font.c" />
-    <ClCompile Include="libharu\hpdf_fontdef.c" />
-    <ClCompile Include="libharu\hpdf_fontdef_base14.c" />
-    <ClCompile Include="libharu\hpdf_fontdef_cid.c" />
-    <ClCompile Include="libharu\hpdf_fontdef_cns.c" />
-    <ClCompile Include="libharu\hpdf_fontdef_cnt.c" />
-    <ClCompile Include="libharu\hpdf_fontdef_jp.c" />
-    <ClCompile Include="libharu\hpdf_fontdef_kr.c" />
-    <ClCompile Include="libharu\hpdf_fontdef_tt.c" />
-    <ClCompile Include="libharu\hpdf_fontdef_type1.c" />
-    <ClCompile Include="libharu\hpdf_font_cid.c" />
-    <ClCompile Include="libharu\hpdf_font_tt.c" />
-    <ClCompile Include="libharu\hpdf_font_type1.c" />
-    <ClCompile Include="libharu\hpdf_gstate.c" />
-    <ClCompile Include="libharu\hpdf_image.c" />
-    <ClCompile Include="libharu\hpdf_image_ccitt.c" />
-    <ClCompile Include="libharu\hpdf_image_png.c" />
-    <ClCompile Include="libharu\hpdf_info.c" />
-    <ClCompile Include="libharu\hpdf_list.c" />
-    <ClCompile Include="libharu\hpdf_mmgr.c" />
-    <ClCompile Include="libharu\hpdf_name.c" />
-    <ClCompile Include="libharu\hpdf_namedict.c" />
-    <ClCompile Include="libharu\hpdf_null.c" />
-    <ClCompile Include="libharu\hpdf_number.c" />
-    <ClCompile Include="libharu\hpdf_objects.c" />
-    <ClCompile Include="libharu\hpdf_outline.c" />
-    <ClCompile Include="libharu\hpdf_pages.c" />
-    <ClCompile Include="libharu\hpdf_page_label.c" />
-    <ClCompile Include="libharu\hpdf_page_operator.c" />
-    <ClCompile Include="libharu\hpdf_pdfa.c" />
-    <ClCompile Include="libharu\hpdf_real.c" />
-    <ClCompile Include="libharu\hpdf_streams.c" />
-    <ClCompile Include="libharu\hpdf_string.c" />
-    <ClCompile Include="libharu\hpdf_u3d.c" />
-    <ClCompile Include="libharu\hpdf_utils.c" />
-    <ClCompile Include="libharu\hpdf_xref.c" />
+    <ClCompile Include="SvgConverter.cpp" />
+    <ClCompile Include="libharu\hpdf_3dmeasure.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_annotation.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_array.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_binary.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_boolean.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_catalog.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_destination.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_dict.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_doc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_doc_png.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_encoder.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_encoder_cns.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_encoder_cnt.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_encoder_jp.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_encoder_kr.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_encoder_utf.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_encrypt.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_encryptdict.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_error.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_exdata.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_ext_gstate.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_font.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_fontdef.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_fontdef_base14.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_fontdef_cid.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_fontdef_cns.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_fontdef_cnt.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_fontdef_jp.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_fontdef_kr.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_fontdef_tt.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_fontdef_type1.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_font_cid.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_font_tt.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_font_type1.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_gstate.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_image.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_image_ccitt.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_image_png.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_info.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_list.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_mmgr.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_name.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_namedict.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_null.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_number.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_objects.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_outline.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_pages.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_page_label.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_page_operator.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_pdfa.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_real.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_streams.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_string.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_u3d.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_utils.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="libharu\hpdf_xref.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="nanosvg.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DrawSvg.h" />
+    <ClInclude Include="SvgConverter.h" />
     <ClInclude Include="libharu\hpdf.h" />
     <ClInclude Include="libharu\hpdf_3dmeasure.h" />
     <ClInclude Include="libharu\hpdf_annotation.h" />

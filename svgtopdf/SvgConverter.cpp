@@ -1,34 +1,28 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include "DrawSvg.h"
+#include "stdafx.h"
+#include "SvgConverter.h"
 #include <iostream>
-typedef struct{
-	float x;
-	float y;
-}Vector2f;
 
-void pdfPath(HPDF_Page page, float* pts, int npts, char closed, float width, bool bFilled, Vector2f startPoint);
-void error_handler(HPDF_STATUS   error_no,
+void SvgConverter::error_handler(HPDF_STATUS   error_no,
 	HPDF_STATUS   detail_no,
 	void         *user_data)
 {
-	char buff[255] = { 0 };
-	sprintf(buff, "ERROR: error_no=%04X, detail_no=%u\n", (HPDF_UINT)error_no,
+	printf_s("HPDF ERROR: error_no=%04X, detail_no=%u\n", (HPDF_UINT)error_no,
 		(HPDF_UINT)detail_no);
-	MessageBox(NULL, buff, NULL, MB_OK);
+
 }
 
-SVGManager::SVGManager(std::string fileName) {
+SvgConverter::SvgConverter(std::string fileName) {
 	this->fileName = fileName;
 	this->g_image = nsvgParseFromFile(fileName.c_str(), "px", 96.0f);
 }
-SVGManager::SVGManager() {
+SvgConverter::SvgConverter() {
 	this->fileName.clear();
 	this->g_image = nullptr;
 }
-bool SVGManager::isLoaded() {
+bool SvgConverter::isLoaded() {
 	return this->g_image;
 }
-bool SVGManager::loadFromFile(std::string fileName) {
+bool SvgConverter::loadFromFile(std::string fileName) {
 	g_image = nsvgParseFromFile(fileName.c_str(), "px", 96.0f); // returns svg image as paths
 	if (!g_image) {
 		std::cerr << "Could not open SVG image." << std::endl;;
@@ -37,7 +31,7 @@ bool SVGManager::loadFromFile(std::string fileName) {
 	return true;
 }
 
-bool SVGManager::convertToPDF(std::string fileName) {
+bool SvgConverter::convertToPDF(std::string fileName) {
 	if (fileName.empty() || !isLoaded()) return false;
 
 	HPDF_Doc pdf = HPDF_New(error_handler, NULL);
@@ -79,12 +73,12 @@ bool SVGManager::convertToPDF(std::string fileName) {
 
 	return true;
 }
-SVGManager::~SVGManager() {
+SvgConverter::~SvgConverter() {
 	if (this->g_image) nsvgDelete(g_image);
 	g_image = nullptr;
 }
 
-static float distPtSeg(float x, float y, float px, float py, float qx, float qy)
+float SvgConverter::distPtSeg(float x, float y, float px, float py, float qx, float qy)
 {
 	float pqx, pqy, dx, dy, d, t;
 	pqx = qx - px;
@@ -102,7 +96,7 @@ static float distPtSeg(float x, float y, float px, float py, float qx, float qy)
 }
 
 
-static void pdfcubicBez(HPDF_Page page, float x1, float y1, float x2, float y2,
+void SvgConverter::pdfcubicBez(HPDF_Page page, float x1, float y1, float x2, float y2,
 	float x3, float y3, float x4, float y4,
 	float tol, int level, Vector2f startPoint)
 {
@@ -133,7 +127,7 @@ static void pdfcubicBez(HPDF_Page page, float x1, float y1, float x2, float y2,
 	// appends a path from the curr point to x4,y4 
 }
 
-void pdfPath(HPDF_Page page, float* pts, int npts, char closed, float tol, bool bFilled, Vector2f startPoint)
+void SvgConverter::pdfPath(HPDF_Page page, float* pts, int npts, char closed, float tol, bool bFilled, Vector2f startPoint)
 {
 	HPDF_Page_MoveTo(page, startPoint.x + pts[0] / 3.0f, startPoint.y - pts[1] / 3.0f); // moving to first point of bezier curve
 

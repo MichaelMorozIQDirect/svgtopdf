@@ -1,318 +1,321 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Исходные файлы">
+    <Filter Include="Source files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков">
+    <Filter Include="Source files\libharu">
+      <UniqueIdentifier>{2910dc9d-80a2-4195-b832-5dfd7ad09cb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Файлы ресурсов">
+    <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Исходные файлы\libharu">
-      <UniqueIdentifier>{2910dc9d-80a2-4195-b832-5dfd7ad09cb1}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DrawSvg.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="nanosvg.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_3dmeasure.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_annotation.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_array.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_binary.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_boolean.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_catalog.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_destination.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_dict.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_doc.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_doc_png.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_encoder.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_encoder_cns.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_encoder_cnt.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_encoder_jp.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_encoder_kr.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_encoder_utf.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_encrypt.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_encryptdict.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_error.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_exdata.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_ext_gstate.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_font.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_font_cid.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_font_tt.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_font_type1.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_fontdef.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_fontdef_base14.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_fontdef_cid.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_fontdef_cns.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_fontdef_cnt.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_fontdef_jp.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_fontdef_kr.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_fontdef_tt.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_fontdef_type1.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_gstate.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_image.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_image_ccitt.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_image_png.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_info.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_list.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_mmgr.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_name.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_namedict.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_null.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_number.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_objects.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_outline.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_page_label.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_page_operator.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_pages.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_pdfa.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_real.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_streams.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_string.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_u3d.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_utils.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClCompile>
     <ClCompile Include="libharu\hpdf_xref.c">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="SvgConverter.cpp">
+      <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DrawSvg.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="nanosvg.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_3dmeasure.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_annotation.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_catalog.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_conf.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_config.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_consts.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_destination.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_doc.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_encoder.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_encrypt.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_encryptdict.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_error.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_exdata.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_ext_gstate.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_font.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_fontdef.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_gstate.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_image.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_info.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_list.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_mmgr.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_namedict.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_objects.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_outline.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_page_label.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_pages.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_pdfa.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_streams.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_types.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_u3d.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_utils.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\hpdf_version.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
     </ClInclude>
     <ClInclude Include="libharu\t4.h">
-      <Filter>Исходные файлы\libharu</Filter>
+      <Filter>Source files\libharu</Filter>
+    </ClInclude>
+    <ClInclude Include="SvgConverter.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
