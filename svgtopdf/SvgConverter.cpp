@@ -103,7 +103,6 @@ void SvgConverter::pdfcubicBez(HPDF_Page page, float x1, float y1, float x2, flo
 	float x3, float y3, float x4, float y4,
 	float /*tol*/, int /*level*/, Vector2f startPoint)
 {
-	HPDF_Page_MoveTo(page, x1, y1);
 	HPDF_Page_CurveTo(page,
 			  startPoint.x + x2 / 3.0f, startPoint.y - y2 / 3.0f,
 			  startPoint.x + x3 / 3.0f, startPoint.y - y3 / 3.0f,
