@@ -101,33 +101,13 @@ float SvgConverter::distPtSeg(float x, float y, float px, float py, float qx, fl
 
 void SvgConverter::pdfcubicBez(HPDF_Page page, float x1, float y1, float x2, float y2,
 	float x3, float y3, float x4, float y4,
-	float tol, int level, Vector2f startPoint)
+	float /*tol*/, int /*level*/, Vector2f startPoint)
 {
-	float x12, y12, x23, y23, x34, y34, x123, y123, x234, y234, x1234, y1234;
-	float d;
-
-	if (level > 12) return;
-	//geting midpoints
-	x12 = (x1 + x2)*0.5f;
-	y12 = (y1 + y2)*0.5f;
-	x23 = (x2 + x3)*0.5f;
-	y23 = (y2 + y3)*0.5f;
-	x34 = (x3 + x4)*0.5f;
-	y34 = (y3 + y4)*0.5f;
-	x123 = (x12 + x23)*0.5f;
-	y123 = (y12 + y23)*0.5f;
-	x234 = (x23 + x34)*0.5f;
-	y234 = (y23 + y34)*0.5f;
-	x1234 = (x123 + x234)*0.5f;
-	y1234 = (y123 + y234)*0.5f;
-
-	d = distPtSeg(x1234, y1234, x1, y1, x4, y4); //check if curr curve is flat
-	if (d > tol * tol) {
-		pdfcubicBez(page, x1, y1, x12, y12, x123, y123, x1234, y1234, tol, level + 1, startPoint); //dividing first piece
-		pdfcubicBez(page, x1234, y1234, x234, y234, x34, y34, x4, y4, tol, level + 1, startPoint); // dividing second piece
-	}
-	else HPDF_Page_LineTo(page, startPoint.x + x4 / 3.0f, startPoint.y - y4 / 3.0f); //curr piece of curve is enough flat
-	// appends a path from the curr point to x4,y4 
+	HPDF_Page_MoveTo(page, x1, y1);
+	HPDF_Page_CurveTo(page,
+			  startPoint.x + x2 / 3.0f, startPoint.y - y2 / 3.0f,
+			  startPoint.x + x3 / 3.0f, startPoint.y - y3 / 3.0f,
+			  startPoint.x + x4 / 3.0f, startPoint.y - y4 / 3.0f);
 }
 
 void SvgConverter::pdfPath(HPDF_Page page, float* pts, int npts, char closed, float tol, bool bFilled, Vector2f startPoint)
