@@ -77,13 +77,17 @@ bool SvgConverter::convertToPDF(std::string fileName) {
 	for (NSVGshape * shape = g_image->shapes; shape != NULL; shape = shape->next) {
 		if (!(shape->flags & NSVG_FLAGS_VISIBLE)) continue; //pass invisible shapes
 
-		float r = (float)((shape->fill.color >> 16) & 0xFF) / 255.0f;
-		float g = (float)((shape->fill.color >> 8) & 0xFF) / 255.0f;
-		float b = (float)((shape->fill.color) & 0xFF) / 255.0f;
+		float r = static_cast<float>((shape->fill.color >> 16) & 0xFF) / 255.0f;
+		float g = static_cast<float>((shape->fill.color >> 8) & 0xFF) / 255.0f;
+		float b = static_cast<float>((shape->fill.color) & 0xFF) / 255.0f;
+#ifdef SVG_TO_PDF_GRAY
 		float gray = (r + g + b) / 3.0f; 
 		gray = (gray < 0.5f) ? 0 : 1.0f;
 
 		HPDF_Page_SetGrayFill(page, gray); // sets the filling color
+#else
+		HPDF_Page_SetRGBFill(page, r, g, b);
+#endif
 
 		for (NSVGpath * path = shape->paths; path != NULL; path = path->next ){
 			// drawing each path in shape to pdf file
