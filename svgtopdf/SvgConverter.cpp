@@ -102,20 +102,30 @@ bool SvgConverter::convertToPDF(std::string fileName) {
 
 		for (NSVGpath * path = shape->paths; path != NULL; path = path->next ){
 			// drawing each path in shape to pdf file
-			pdfPath(page, path->pts, path->npts, path->closed, 0.1f, shape->fill.type != NSVG_PAINT_NONE, startPoint);
+			pdfPath(page, path->pts, path->npts, path->closed, startPoint);
 		}
-		if (shape->fill.type != NSVG_PAINT_NONE) {
-			if (shape->fillRule == NSVGfillRule::NSVG_FILLRULE_EVENODD)
-				HPDF_Page_EofillStroke(page); // fills the curr path using the even-odd rule and paints
-			else HPDF_Page_FillStroke(page); // fills the curr path using the nonzero winding number rule and paints
+		if(shape->fill.type != NSVG_PAINT_NONE) {
+			if(shape->fillRule == NSVGfillRule::NSVG_FILLRULE_EVENODD) {
+				if(shape->stroke.type != NSVG_PAINT_NONE)
+					HPDF_Page_EofillStroke(page);
+				else
+					HPDF_Page_Eofill(page);
+			} else {
+				if(shape->stroke.type != NSVG_PAINT_NONE)
+					HPDF_Page_FillStroke(page);
+				else
+					HPDF_Page_Fill(page);
+			}
+		} else if(shape->stroke.type != NSVG_PAINT_NONE) {
+			HPDF_Page_Stroke(page);
 		}
-		else HPDF_Page_Stroke(page); // paints the path
 	}
 	HPDF_SaveToFile(pdf, fileName.c_str());
 	HPDF_Free(pdf);
 
 	return true;
 }
+
 SvgConverter::~SvgConverter() {
 	if (this->g_image) nsvgDelete(g_image);
 	g_image = nullptr;
