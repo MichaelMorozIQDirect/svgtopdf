@@ -2,12 +2,8 @@
 #define __SVG_CONVERTER_H__
 
 #include <string>
-#include "nanosvg.h"
-
-extern "C" {
-#include "libharu\hpdf.h"
-#include "libharu\hpdf_utils.h"
-}
+#include <nanosvg.h>
+#include <hpdf.h>
 
 typedef struct {
 	float x;
@@ -37,9 +33,6 @@ private:
 		float tol, int level, Vector2f startPoint);
 	void pdfPath(HPDF_Page page, float* pts, int npts, char closed, float tol, bool bFilled,
 		Vector2f startPoint);
-	static void error_handler(HPDF_STATUS   error_no,
-		HPDF_STATUS   detail_no,
-		void         *user_data);
 };
 
 #endif //__SVG_CONVERTER_H__

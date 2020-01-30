@@ -1,14 +1,12 @@
 #include "stdafx.h"
 #include "SvgConverter.h"
-#include <iostream>
 
-void SvgConverter::error_handler(HPDF_STATUS   error_no,
+static void error_handler(HPDF_STATUS   error_no,
 	HPDF_STATUS   detail_no,
 	void         *user_data)
 {
-	printf_s("HPDF ERROR: error_no=%04X, detail_no=%u\n", (HPDF_UINT)error_no,
-		(HPDF_UINT)detail_no);
-
+	std::cerr << "HPDF ERROR: error_no=" << std::setfill('0') << std::setw(4)
+		<< std::hex << error_no << ", detail_no=" << detail_no << '\n';
 }
 
 SvgConverter::SvgConverter(std::string fileName) {
