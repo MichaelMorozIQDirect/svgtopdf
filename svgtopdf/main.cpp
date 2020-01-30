@@ -1,11 +1,10 @@
 #include "stdafx.h"
-#include <iostream>
 #include "SvgConverter.h"
 
 int main(int argc, char ** argv) {
 
 	if (argc != 3) {
-		std::cout << "Invalid run arguments." << std::endl << "The correct usage is: svgtopdf infile.svg outfile.pdf" << std::endl;
+		std::cout << "Invalid run arguments.\nThe correct usage is: svgtopdf infile.svg outfile.pdf\n";
 		return 1;
 	}
 	
@@ -27,8 +26,5 @@ int main(int argc, char ** argv) {
 	}
 	
 	std::cout << "Converted. Please see " << fileOutput  << std::endl;
-
-
-	//getchar();
 	return 0;
 }

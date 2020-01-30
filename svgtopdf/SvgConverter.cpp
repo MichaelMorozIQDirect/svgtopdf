@@ -1,19 +1,17 @@
 #include "stdafx.h"
 #include "SvgConverter.h"
-#include <iostream>
 
-void SvgConverter::error_handler(HPDF_STATUS   error_no,
+static void error_handler(HPDF_STATUS   error_no,
 	HPDF_STATUS   detail_no,
 	void         *user_data)
 {
-	printf_s("HPDF ERROR: error_no=%04X, detail_no=%u\n", (HPDF_UINT)error_no,
-		(HPDF_UINT)detail_no);
-
+	std::cerr << "HPDF ERROR: error_no=" << std::setfill('0') << std::setw(4)
+		<< std::hex << error_no << ", detail_no=" << detail_no << '\n';
 }
 
 SvgConverter::SvgConverter(std::string fileName) {
 	this->fileName = fileName;
-	this->g_image = nsvgParseFromFile(fileName.c_str(), "px", 96.0f);
+	this->g_image = nsvgParseFromFile(fileName.c_str(), "pt", 72.0f);
 }
 SvgConverter::SvgConverter() {
 	this->fileName.clear();
@@ -26,12 +24,39 @@ bool SvgConverter::loadFromFile(std::string fileName) {
 	if (g_image)
 		nsvgDelete(g_image);
 
-	g_image = nsvgParseFromFile(fileName.c_str(), "px", 96.0f); // returns svg image as paths
+	g_image = nsvgParseFromFile(fileName.c_str(), "pt", 72.0f); // returns svg image as paths
 	if (!g_image) {
 		std::cerr << "Could not open SVG image." << std::endl;;
 		return false;
 	}
 	return true;
+}
+
+static void pdfcubicBez(
+	HPDF_Page page,
+	float x2, float y2,
+	float x3, float y3,
+	float x4, float y4,
+	const Vector2f& startPoint)
+{
+	HPDF_Page_CurveTo(page,
+			  startPoint.x + x2, startPoint.y - y2,
+			  startPoint.x + x3, startPoint.y - y3,
+			  startPoint.x + x4, startPoint.y - y4);
+}
+
+static void pdfPath(HPDF_Page page, float* pts, int npts, bool closed, const Vector2f& startPoint)
+{
+	HPDF_Page_MoveTo(page, startPoint.x + pts[0], startPoint.y - pts[1]); // moving to first point of bezier curve
+
+	float* last_p = &pts[0];
+	for (int i = 0; i < npts - 1; i += 3) {
+		float* p = &pts[i * 2];
+		pdfcubicBez(page, p[2], p[3], p[4], p[5], p[6], p[7], startPoint); // draw a cubic bezier curve
+		last_p = &p[6];
+	}
+	if (closed && std::abs(last_p[0] - pts[0]) > 0.0001f && std::abs(last_p[1] - pts[1]) > 0.0001f)
+		HPDF_Page_LineTo(page, startPoint.x + pts[0], startPoint.y - pts[1]);
 }
 
 bool SvgConverter::convertToPDF(std::string fileName) {
@@ -52,91 +77,57 @@ bool SvgConverter::convertToPDF(std::string fileName) {
 	for (NSVGshape * shape = g_image->shapes; shape != NULL; shape = shape->next) {
 		if (!(shape->flags & NSVG_FLAGS_VISIBLE)) continue; //pass invisible shapes
 
-		float r = (float)((shape->fill.color >> 16) & 0xFF) / 255.0f;
-		float g = (float)((shape->fill.color >> 8) & 0xFF) / 255.0f;
-		float b = (float)((shape->fill.color) & 0xFF) / 255.0f;
+		float r = static_cast<float>((shape->fill.color >> 16) & 0xFF) / 255.0f;
+		float g = static_cast<float>((shape->fill.color >> 8) & 0xFF) / 255.0f;
+		float b = static_cast<float>((shape->fill.color) & 0xFF) / 255.0f;
+#ifdef SVG_TO_PDF_GRAY
 		float gray = (r + g + b) / 3.0f; 
 		gray = (gray < 0.5f) ? 0 : 1.0f;
 
 		HPDF_Page_SetGrayFill(page, gray); // sets the filling color
+#else
+		HPDF_Page_SetRGBFill(page, r, g, b);
+#endif
+		r = static_cast<float>((shape->stroke.color >> 16) & 0xFF) / 255.0f;
+		g = static_cast<float>((shape->stroke.color >> 8) & 0xFF) / 255.0f;
+		b = static_cast<float>((shape->stroke.color) & 0xFF) / 255.0f;
+#ifdef SVG_TO_PDF_GRAY
+		gray = (r + g + b) / 3.0f; 
+		gray = (gray < 0.5f) ? 0 : 1.0f;
+
+		HPDF_Page_SetGrayStroke(page, gray); // sets the filling color
+#else
+		HPDF_Page_SetRGBStroke(page, r, g, b);
+#endif
 
 		for (NSVGpath * path = shape->paths; path != NULL; path = path->next ){
 			// drawing each path in shape to pdf file
-			pdfPath(page, path->pts, path->npts, path->closed, 0.1f, shape->fill.type != NSVG_PAINT_NONE, startPoint);
+			pdfPath(page, path->pts, path->npts, path->closed, startPoint);
 		}
-		if (shape->fill.type != NSVG_PAINT_NONE) {
-			if (shape->fillRule == NSVGfillRule::NSVG_FILLRULE_EVENODD)
-				HPDF_Page_EofillStroke(page); // fills the curr path using the even-odd rule and paints
-			else HPDF_Page_FillStroke(page); // fills the curr path using the nonzero winding number rule and paints
+		if(shape->fill.type != NSVG_PAINT_NONE) {
+			if(shape->fillRule == NSVGfillRule::NSVG_FILLRULE_EVENODD) {
+				if(shape->stroke.type != NSVG_PAINT_NONE)
+					HPDF_Page_EofillStroke(page);
+				else
+					HPDF_Page_Eofill(page);
+			} else {
+				if(shape->stroke.type != NSVG_PAINT_NONE)
+					HPDF_Page_FillStroke(page);
+				else
+					HPDF_Page_Fill(page);
+			}
+		} else if(shape->stroke.type != NSVG_PAINT_NONE) {
+			HPDF_Page_Stroke(page);
 		}
-		else HPDF_Page_Stroke(page); // paints the path
 	}
 	HPDF_SaveToFile(pdf, fileName.c_str());
 	HPDF_Free(pdf);
 
 	return true;
 }
+
 SvgConverter::~SvgConverter() {
 	if (this->g_image) nsvgDelete(g_image);
 	g_image = nullptr;
 }
 
-float SvgConverter::distPtSeg(float x, float y, float px, float py, float qx, float qy)
-{
-	float pqx, pqy, dx, dy, d, t;
-	pqx = qx - px;
-	pqy = qy - py;
-	dx = x - px;
-	dy = y - py;
-	d = pqx*pqx + pqy*pqy;
-	t = pqx*dx + pqy*dy;
-	if (d > 0) t /= d;
-	if (t < 0) t = 0;
-	else if (t > 1) t = 1;
-	dx = px + t*pqx - x;
-	dy = py + t*pqy - y;
-	return dx*dx + dy*dy;
-}
-
-
-void SvgConverter::pdfcubicBez(HPDF_Page page, float x1, float y1, float x2, float y2,
-	float x3, float y3, float x4, float y4,
-	float tol, int level, Vector2f startPoint)
-{
-	float x12, y12, x23, y23, x34, y34, x123, y123, x234, y234, x1234, y1234;
-	float d;
-
-	if (level > 12) return;
-	//geting midpoints
-	x12 = (x1 + x2)*0.5f;
-	y12 = (y1 + y2)*0.5f;
-	x23 = (x2 + x3)*0.5f;
-	y23 = (y2 + y3)*0.5f;
-	x34 = (x3 + x4)*0.5f;
-	y34 = (y3 + y4)*0.5f;
-	x123 = (x12 + x23)*0.5f;
-	y123 = (y12 + y23)*0.5f;
-	x234 = (x23 + x34)*0.5f;
-	y234 = (y23 + y34)*0.5f;
-	x1234 = (x123 + x234)*0.5f;
-	y1234 = (y123 + y234)*0.5f;
-
-	d = distPtSeg(x1234, y1234, x1, y1, x4, y4); //check if curr curve is flat
-	if (d > tol * tol) {
-		pdfcubicBez(page, x1, y1, x12, y12, x123, y123, x1234, y1234, tol, level + 1, startPoint); //dividing first piece
-		pdfcubicBez(page, x1234, y1234, x234, y234, x34, y34, x4, y4, tol, level + 1, startPoint); // dividing second piece
-	}
-	else HPDF_Page_LineTo(page, startPoint.x + x4 / 3.0f, startPoint.y - y4 / 3.0f); //curr piece of curve is enough flat
-	// appends a path from the curr point to x4,y4 
-}
-
-void SvgConverter::pdfPath(HPDF_Page page, float* pts, int npts, char closed, float tol, bool bFilled, Vector2f startPoint)
-{
-	HPDF_Page_MoveTo(page, startPoint.x + pts[0] / 3.0f, startPoint.y - pts[1] / 3.0f); // moving to first point of bezier curve
-
-	for (int i = 0; i < npts - 1; i += 3) {
-		float* p = &pts[i * 2];
-		pdfcubicBez(page, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], tol, 0, startPoint); // draw a cubic bezier curve
-	}
-	if (closed) HPDF_Page_LineTo(page, startPoint.x + pts[0] / 3.0f, startPoint.y - pts[1] / 3.0f);
-}
