@@ -88,6 +88,17 @@ bool SvgConverter::convertToPDF(std::string fileName) {
 #else
 		HPDF_Page_SetRGBFill(page, r, g, b);
 #endif
+		r = static_cast<float>((shape->stroke.color >> 16) & 0xFF) / 255.0f;
+		g = static_cast<float>((shape->stroke.color >> 8) & 0xFF) / 255.0f;
+		b = static_cast<float>((shape->stroke.color) & 0xFF) / 255.0f;
+#ifdef SVG_TO_PDF_GRAY
+		gray = (r + g + b) / 3.0f; 
+		gray = (gray < 0.5f) ? 0 : 1.0f;
+
+		HPDF_Page_SetGrayStroke(page, gray); // sets the filling color
+#else
+		HPDF_Page_SetRGBStroke(page, r, g, b);
+#endif
 
 		for (NSVGpath * path = shape->paths; path != NULL; path = path->next ){
 			// drawing each path in shape to pdf file
