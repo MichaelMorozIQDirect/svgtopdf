@@ -32,6 +32,33 @@ bool SvgConverter::loadFromFile(std::string fileName) {
 	return true;
 }
 
+static void pdfcubicBez(
+	HPDF_Page page,
+	float x2, float y2,
+	float x3, float y3,
+	float x4, float y4,
+	const Vector2f& startPoint)
+{
+	HPDF_Page_CurveTo(page,
+			  startPoint.x + x2, startPoint.y - y2,
+			  startPoint.x + x3, startPoint.y - y3,
+			  startPoint.x + x4, startPoint.y - y4);
+}
+
+static void pdfPath(HPDF_Page page, float* pts, int npts, bool closed, const Vector2f& startPoint)
+{
+	HPDF_Page_MoveTo(page, startPoint.x + pts[0], startPoint.y - pts[1]); // moving to first point of bezier curve
+
+	float* last_p = &pts[0];
+	for (int i = 0; i < npts - 1; i += 3) {
+		float* p = &pts[i * 2];
+		pdfcubicBez(page, p[2], p[3], p[4], p[5], p[6], p[7], startPoint); // draw a cubic bezier curve
+		last_p = &p[6];
+	}
+	if (closed && std::abs(last_p[0] - pts[0]) > 0.0001f && std::abs(last_p[1] - pts[1]) > 0.0001f)
+		HPDF_Page_LineTo(page, startPoint.x + pts[0], startPoint.y - pts[1]);
+}
+
 bool SvgConverter::convertToPDF(std::string fileName) {
 	if (fileName.empty() || !isLoaded()) return false;
 
@@ -79,41 +106,3 @@ SvgConverter::~SvgConverter() {
 	g_image = nullptr;
 }
 
-float SvgConverter::distPtSeg(float x, float y, float px, float py, float qx, float qy)
-{
-	float pqx, pqy, dx, dy, d, t;
-	pqx = qx - px;
-	pqy = qy - py;
-	dx = x - px;
-	dy = y - py;
-	d = pqx*pqx + pqy*pqy;
-	t = pqx*dx + pqy*dy;
-	if (d > 0) t /= d;
-	if (t < 0) t = 0;
-	else if (t > 1) t = 1;
-	dx = px + t*pqx - x;
-	dy = py + t*pqy - y;
-	return dx*dx + dy*dy;
-}
-
-
-void SvgConverter::pdfcubicBez(HPDF_Page page, float x1, float y1, float x2, float y2,
-	float x3, float y3, float x4, float y4,
-	float /*tol*/, int /*level*/, Vector2f startPoint)
-{
-	HPDF_Page_CurveTo(page,
-			  startPoint.x + x2 / 3.0f, startPoint.y - y2 / 3.0f,
-			  startPoint.x + x3 / 3.0f, startPoint.y - y3 / 3.0f,
-			  startPoint.x + x4 / 3.0f, startPoint.y - y4 / 3.0f);
-}
-
-void SvgConverter::pdfPath(HPDF_Page page, float* pts, int npts, char closed, float tol, bool bFilled, Vector2f startPoint)
-{
-	HPDF_Page_MoveTo(page, startPoint.x + pts[0] / 3.0f, startPoint.y - pts[1] / 3.0f); // moving to first point of bezier curve
-
-	for (int i = 0; i < npts - 1; i += 3) {
-		float* p = &pts[i * 2];
-		pdfcubicBez(page, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], tol, 0, startPoint); // draw a cubic bezier curve
-	}
-	if (closed) HPDF_Page_LineTo(page, startPoint.x + pts[0] / 3.0f, startPoint.y - pts[1] / 3.0f);
-}
