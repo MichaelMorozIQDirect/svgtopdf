@@ -11,7 +11,7 @@ static void error_handler(HPDF_STATUS   error_no,
 
 SvgConverter::SvgConverter(std::string fileName) {
 	this->fileName = fileName;
-	this->g_image = nsvgParseFromFile(fileName.c_str(), "px", 96.0f);
+	this->g_image = nsvgParseFromFile(fileName.c_str(), "pt", 72.0f);
 }
 SvgConverter::SvgConverter() {
 	this->fileName.clear();
@@ -24,7 +24,7 @@ bool SvgConverter::loadFromFile(std::string fileName) {
 	if (g_image)
 		nsvgDelete(g_image);
 
-	g_image = nsvgParseFromFile(fileName.c_str(), "px", 96.0f); // returns svg image as paths
+	g_image = nsvgParseFromFile(fileName.c_str(), "pt", 72.0f); // returns svg image as paths
 	if (!g_image) {
 		std::cerr << "Could not open SVG image." << std::endl;;
 		return false;
